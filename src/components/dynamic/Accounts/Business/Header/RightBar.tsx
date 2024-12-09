@@ -9,8 +9,14 @@ import { FiUser } from "react-icons/fi";
 import { LuSettings } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 
+interface UserData {
+  avatar?: string;
+  first_name?: string;
+  last_name?: string;
+}
+
 const RightBar = () => {
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [, setLoading] = useState(true);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const router = useRouter();
@@ -57,7 +63,7 @@ const RightBar = () => {
                 {userData.avatar ? (
                   <Image
                     src={`http://109.199.103.20:2022/assets/${userData.avatar}`}
-                    alt={userData.first_name}
+                    alt={userData.first_name || ""}
                     width={30}
                     height={30}
                     className="rounded-full"

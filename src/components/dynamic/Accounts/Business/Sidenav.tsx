@@ -11,6 +11,12 @@ import {
 } from "react-icons/md";
 import { BsBoxes } from "react-icons/bs";
 
+interface UserData {
+  avatar?: string;
+  first_name?: string;
+  last_name?: string;
+}
+
 const sidenavItems = [
   {
     name: "Dashboard",
@@ -51,7 +57,7 @@ const sidenavItems = [
 
 const Sidenav = () => {
   const [activeItem, setActiveItem] = useState("Profile");
-  const [, setUserData] = useState<any>(null);
+  const [, setUserData] = useState<UserData | null>(null);
   const router = useRouter();
 
   useEffect(() => {
