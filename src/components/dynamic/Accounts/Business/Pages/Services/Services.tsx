@@ -56,8 +56,6 @@ const gruppo = Gruppo({
 
 const Services: React.FC = () => {
   const [data, setData] = useState<UserCategoryData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("All categories");
   const [addCategory, setAddCategory] = useState<boolean>(false);
@@ -103,7 +101,6 @@ const Services: React.FC = () => {
       setData(response.data.data);
     } catch (err: unknown) {
       console.error("Error removing category:", err);
-      setError((err as Error).message || "Failed to remove category.");
     }
   };
 
@@ -155,7 +152,6 @@ const Services: React.FC = () => {
         setData(response.data.data);
       } catch (err: unknown) {
         console.error("Error saving categories:", err);
-        setError((err as Error).message || "Failed to save categories.");
       }
     }
   };
@@ -190,14 +186,12 @@ const Services: React.FC = () => {
       setData(response.data.data);
     } catch (err: unknown) {
       console.error("Error deleting sub-service:", err);
-      setError((err as Error).message || "Failed to delete sub-service.");
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         const response = await api.get(`/users/me`, {
           params: {
             "fields[]": [
@@ -219,9 +213,6 @@ const Services: React.FC = () => {
         console.log(categoriesResponse.data.data);
       } catch (err: unknown) {
         console.error("Error fetching data:", err);
-        setError((err as Error).message || "Failed to fetch data.");
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -322,10 +313,8 @@ const Services: React.FC = () => {
   };
 
   const ServiceCard = ({
-    service,
     subService,
   }: {
-    service: Service;
     subService: SubService;
   }) => {
     return (
@@ -501,7 +490,6 @@ const Services: React.FC = () => {
                                   (subService, subIndex) => (
                                     <ServiceCard
                                       key={subIndex}
-                                      service={service}
                                       subService={subService}
                                     />
                                   )
@@ -533,7 +521,6 @@ const Services: React.FC = () => {
                               (subService, subIndex) => (
                                 <ServiceCard
                                   key={subIndex}
-                                  service={service}
                                   subService={subService}
                                 />
                               )
