@@ -46,7 +46,7 @@ export default function Footer() {
 
           {/* Smaller Text below logo */}
           <p className="text-gray-600 text-xs sm:text-sm mt-2 text-center">
-            Empowering beauty and wellness, one click at a time.
+            Empowering beauty and wellness, one click at a time
           </p>
         </div>
 

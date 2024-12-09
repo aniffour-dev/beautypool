@@ -2,7 +2,7 @@
 import React from "react";
 import { IoIosArrowDropright } from "react-icons/io";
 import Link from "next/link";
-import BG from "../../../../public/assets/register.webp";
+import BG from "../../../public/assets/register.webp";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import LoginCustomer from "./logins/LoginCustomer";
 import LoginBusiness from "./logins/LoginBusiness";
