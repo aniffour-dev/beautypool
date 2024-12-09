@@ -116,8 +116,8 @@ const RegisterCustomer = () => {
       });
 
       return true;
-    } catch (error: any) {
-      if (error.response?.data?.message) {
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.data?.message) {
         setEmailError(error.response.data.message);
       } else {
         setEmailError("This email already exists!");
@@ -188,8 +188,8 @@ const RegisterCustomer = () => {
         setAccessToken(access_token);
         setRefreshToken(refresh_token);
         router.push("/");
-      } catch (error: any) {
-        if (error.response?.data?.errors) {
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.data?.errors) {
           const errorMessage = error.response.data.errors[0].message;
           if (errorMessage === "Email already exists") {
             setEmailError(errorMessage);
@@ -343,8 +343,8 @@ const RegisterCustomer = () => {
                 Create a professional account
               </h3>
               <p className="text-slate-900 font-normal text-sm max-w-[500px] mx-auto text-center mb-8">
-                You&apos;re almost done! Complete the details below to create your
-                new account for{" "}
+                You&apos;re almost done! Complete the details below to create
+                your new account for{" "}
                 <span className="font-semibold">{watch("email")}</span>.
               </p>
               <div className="px-0 md:px-20">
@@ -453,7 +453,14 @@ const RegisterCustomer = () => {
                       <PhoneInput
                         country={"us"}
                         value={value}
-                        onChange={(phone: string, country: any) => {
+                        onChange={(
+                          phone: string,
+                          country: {
+                            name: string;
+                            countryCode: string;
+                            dialCode: string;
+                          }
+                        ) => {
                           onChange(phone);
                           setValue("location", country.name);
                           setValue(
@@ -469,16 +476,17 @@ const RegisterCustomer = () => {
                         }}
                         containerClass="w-full"
                         inputClass={`
-            shadow appearance-none border rounded w-full !py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-            pl-16 pr-3
-            ${errors.phone ? "border-red-500" : "border-gray-300"}
-          `}
+        shadow appearance-none border rounded w-full !py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+        pl-16 pr-3
+        ${errors.phone ? "border-red-500" : "border-gray-300"}
+      `}
                         buttonClass="!bg-transparent !border-none"
                         dropdownClass="custom-dropdown-class"
                         specialLabel=""
                       />
                     )}
                   />
+
                   {errors.phone && (
                     <span className="text-red-500">{errors.phone.message}</span>
                   )}
