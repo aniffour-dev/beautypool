@@ -3,16 +3,16 @@ import React from "react";
 import { IoIosArrowDropright } from "react-icons/io";
 import Link from "next/link";
 import BG from "../../../../public/assets/register.webp";
-import localFont from "next/font/local";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import RegisterCustomer from "./registers/RegisterCustomer";
 import RegisterBusiness from "./registers/RegisterBusiness";
+import { Gruppo } from "next/font/google";
 
-const GDSageBold = localFont({
-  src: "../../fonts/GDSage-Bold.ttf",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const gruppo = Gruppo({
+    subsets: ["latin"],
+    variable: "--font-geist-mono",
+    weight: "400",
+  });
 
 const Register = () => {
   const [cutomers, setCustomers] = React.useState(false);
@@ -57,7 +57,7 @@ const Register = () => {
           {formselection && (
             <>
               <h2
-                className={`${GDSageBold.className} text-2xl md:text-3xl my-5 text-gray-800 text-center font-serif`}
+                className={`${gruppo.className} text-2xl md:text-3xl my-5 text-gray-800 text-center font-serif`}
               >
                 Create an Account As
               </h2>

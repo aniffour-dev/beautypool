@@ -1,5 +1,4 @@
 "use client";
-import localFont from "next/font/local";
 import React, { useEffect, useState } from "react";
 import { MdFacebook } from "react-icons/md";
 import RegisterBusiness from "./RegisterBusiness";
@@ -14,6 +13,7 @@ import Cookies from "js-cookie";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import api from "@/services/auth";
+import { Gruppo } from "next/font/google";
 
 interface SignUpFormData {
   first_name: string;
@@ -53,11 +53,11 @@ const defaultFormData: SignUpFormData = {
   device_id: "",
 };
 
-const GDSageBold = localFont({
-  src: "../../../fonts/GDSage-Bold.ttf",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const gruppo = Gruppo({
+    subsets: ['latin'],
+    variable: "--font-geist-mono",
+    weight: "400",
+  });
 
 const RegisterCustomer = () => {
   const [customer, setCustomer] = React.useState(true);
@@ -222,7 +222,7 @@ const RegisterCustomer = () => {
           {step === 1 && (
             <>
               <h3
-                className={`${GDSageBold.className} text-2xl text-black font-semibold text-center my-4`}
+                className={`${gruppo.className} text-2xl text-black font-semibold text-center my-4`}
               >
                 Beautypool for customers
               </h3>
@@ -338,7 +338,7 @@ const RegisterCustomer = () => {
           {step === 2 && (
             <form action="" onSubmit={handleSubmit(onSubmit)}>
               <h3
-                className={`${GDSageBold.className} text-2xl text-black font-semibold text-center my-4`}
+                className={`${gruppo.className} text-2xl text-black font-semibold text-center my-4`}
               >
                 Create a professional account
               </h3>

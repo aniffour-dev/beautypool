@@ -1,5 +1,4 @@
 "use client";
-import localFont from "next/font/local";
 import React, { useState } from "react";
 import "react-phone-input-2/lib/style.css";
 import "tailwindcss/tailwind.css";
@@ -9,12 +8,13 @@ import Cookies from "js-cookie";
 import api from "@/services/auth";
 import { MdFacebook } from "react-icons/md";
 import LoginCustomer from "./LoginCustomer";
+import { Gruppo } from "next/font/google";
 
-const GDSageBold = localFont({
-  src: "../../../fonts/GDSage-Bold.ttf",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const gruppo = Gruppo({
+    subsets: ["latin"],
+    variable: "--font-geist-mono",
+    weight: "400",
+  });
 
 const LoginBusiness = () => {
   const [customer] = React.useState(true);
@@ -60,7 +60,7 @@ const LoginBusiness = () => {
       {customer && (
         <>
           <h3
-            className={`${GDSageBold.className} text-2xl text-black font-semibold text-center my-4`}
+            className={`${gruppo.className} text-2xl text-black font-semibold text-center my-4`}
           >
             Beautypool for business
           </h3>
