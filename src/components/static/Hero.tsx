@@ -1,6 +1,6 @@
 import { BackgroundGradientAnimation } from "@/app/ui/background";
 import React from "react";
-// import BookingForm from "../../dynamic/Book/Booking";
+import BookingForm from "@/components/dynamic/Book/Forms/Booking";
 import Navbar from "@/components/global/header/Navbar";
 import LiveCounter from "@/components/static/LiveCounter";
 import { Gruppo } from "next/font/google";
@@ -27,8 +27,7 @@ const Hero = () => {
             wellness services tailored for you
           </h1>
           <div className="mt-10 px-5 lg:px-0">
-            {/* <BookingForm /> */}
-            <h1>BOOKFORM</h1>
+            <BookingForm />
           </div>
 
           <LiveCounter />
