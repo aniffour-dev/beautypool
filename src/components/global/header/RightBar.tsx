@@ -68,7 +68,7 @@ const RightBar = () => {
                 {userData.avatar ? (
                   <Image
                     src={`http://109.199.103.20:2022/assets/${userData.avatar}`}
-                    alt={userData?.first_name!}
+                    alt={userData.first_name || "User"}
                     width={25}
                     height={25}
                     className="rounded-full"
