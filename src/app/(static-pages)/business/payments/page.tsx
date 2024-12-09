@@ -1,4 +1,4 @@
-import Payments from "@/app/components/dynamic/Account/Business/Pages/Payments";
+import Payments from "@/components/dynamic/Accounts/Business/Pages/Payments";
 import React from "react";
 
 const payments = () => {

@@ -1,4 +1,4 @@
-import Services from "@/app/components/dynamic/Account/Business/Pages/Services/Services";
+import Services from "@/components/dynamic/Accounts/Business/Pages/Services/Services";
 import React from "react";
 
 const servicespage = () => {

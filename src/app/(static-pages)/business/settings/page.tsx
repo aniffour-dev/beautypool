@@ -1,4 +1,4 @@
-import Settings from "@/app/components/dynamic/Account/Business/Pages/Settings";
+import Settings from "@/components/dynamic/Accounts/Business/Pages/Settings";
 import React from "react";
 
 const settings = () => {

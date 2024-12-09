@@ -1,4 +1,4 @@
-import Clients from "@/app/components/dynamic/Account/Business/Pages/Clients";
+import Clients from "@/components/dynamic/Accounts/Business/Pages/Clients";
 import React from "react";
 
 const clients = () => {
