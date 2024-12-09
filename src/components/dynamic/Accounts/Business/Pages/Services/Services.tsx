@@ -59,25 +59,12 @@ const Services: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [activeCategory, setActiveCategory] =
-    useState<string>("All categories");
+  const [activeCategory, setActiveCategory] = useState<string>("All categories");
   const [addCategory, setAddCategory] = useState<boolean>(false);
-  const [availableCategories, setAvailableCategories] = useState<Category[]>(
-    []
-  );
+  const [availableCategories, setAvailableCategories] = useState<Category[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
-  const [openMenus, setOpenMenus] = useState<Record<number, boolean>>({});
+  const [openServiceMenus, setOpenServiceMenus] = useState<Record<number, boolean>>({});
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [openServiceMenus, setOpenServiceMenus] = useState<
-    Record<number, boolean>
-  >({});
-
-  const toggleMenu = (id: number) => {
-    setOpenMenus((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
 
   const toggleServiceMenu = (id: number) => {
     setOpenServiceMenus((prev) => ({
@@ -114,9 +101,9 @@ const Services: React.FC = () => {
         },
       });
       setData(response.data.data);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error removing category:", err);
-      setError(err.message || "Failed to remove category.");
+      setError((err as Error).message || "Failed to remove category.");
     }
   };
 
@@ -166,16 +153,11 @@ const Services: React.FC = () => {
           },
         });
         setData(response.data.data);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error saving categories:", err);
-        setError(err.message || "Failed to save categories.");
+        setError((err as Error).message || "Failed to save categories.");
       }
     }
-  };
-
-  const handlegetidCheckbox = (category: any) => {
-    console.log(category);
-    return category;
   };
 
   const handleDeleteSubService = async (subServiceId: number) => {
@@ -206,9 +188,9 @@ const Services: React.FC = () => {
         },
       });
       setData(response.data.data);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error deleting sub-service:", err);
-      setError(err.message || "Failed to delete sub-service.");
+      setError((err as Error).message || "Failed to delete sub-service.");
     }
   };
 
@@ -235,9 +217,9 @@ const Services: React.FC = () => {
         const categoriesResponse = await api.get(`/items/Categorie`);
         setAvailableCategories(categoriesResponse.data.data);
         console.log(categoriesResponse.data.data);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error fetching data:", err);
-        setError(err.message || "Failed to fetch data.");
+        setError((err as Error).message || "Failed to fetch data.");
       } finally {
         setLoading(false);
       }
@@ -248,7 +230,6 @@ const Services: React.FC = () => {
 
   const getServicesForCategory = (categoryLabel: string) => {
     if (!data) return [];
-
     const category = data.category.find(
       (cat) => cat.Categorie_id.label === categoryLabel
     );
@@ -300,7 +281,6 @@ const Services: React.FC = () => {
     isSelected,
     isDisabled,
     onChange,
-    onClick,
   }: {
     id: number;
     label: string;
@@ -308,7 +288,6 @@ const Services: React.FC = () => {
     isSelected: boolean;
     isDisabled: boolean;
     onChange: () => void;
-    onClick: () => void;
   }) => {
     return (
       <div
@@ -325,7 +304,6 @@ const Services: React.FC = () => {
             checked={isSelected}
             disabled={isDisabled}
             onChange={onChange}
-            onClick={handlegetidCheckbox}
           />
           <label
             htmlFor={`category-${id}`}
@@ -596,7 +574,6 @@ const Services: React.FC = () => {
                   isSelected={selectedCategories.includes(category.id)}
                   isDisabled={existingCategoryIds.includes(category.id)}
                   onChange={() => handleCategorySelect(category.id)}
-                  onClick={handlegetidCheckbox(category)}
                 />
               ))}
             </div>
