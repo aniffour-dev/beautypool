@@ -11,7 +11,6 @@ const gruppo = Gruppo({
   weight: "400",
 });
 
-
 const Hero = () => {
   return (
     <BackgroundGradientAnimation>

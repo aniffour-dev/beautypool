@@ -206,10 +206,10 @@ import {
   Legend,
 } from "chart.js";
 import BookDashboard from "./BookDashboard";
-import localFont from "next/font/local";
 import PaymentsDashboard from "./PaymentsDashboard";
 import Sidenav from "./Sidenav";
 import Header from "./Header/Header";
+import { Gruppo } from "next/font/google";
 
 // Define a type for user data
 interface UserData {
@@ -233,20 +233,16 @@ ChartJS.register(
   Legend
 );
 
-const GDSageBold = localFont({
-  src: "../../../../fonts/GDSage-Bold.ttf",
+const gruppo = Gruppo({
+  subsets: ['latin'],
   variable: "--font-geist-mono",
-  weight: "100 900",
+  weight: "400",
 });
 
 const HomeDashboard = () => {
   const [activePage, setActivePage] = useState("home");
   const [searchTerm, setSearchTerm] = useState("");
   const [userData, setUserData] = useState<UserData | null>(null);
-
-  const handleNavigation = (page: string) => {
-    setActivePage(page);
-  };
 
   const handleUserDataFetched = (data: UserData | null) => {
     setUserData(data);
