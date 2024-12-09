@@ -1,4 +1,4 @@
-// import { BackgroundGradientAnimation } from "@/app/ui/background-gradient-animation";
+import { BackgroundGradientAnimation } from "@/app/ui/background";
 import React from "react";
 // import BookingForm from "../../dynamic/Book/Booking";
 import Navbar from "@/components/global/header/Navbar";
@@ -14,28 +14,27 @@ const gruppo = Gruppo({
 
 const Hero = () => {
   return (
-    // <BackgroundGradientAnimation>
-    //   <div className="z-50 mb-20 relative">
-    //     <Navbar />
-    //   </div>
-    //   <div className="absolute z-40 inset-0 flex items-center">
-    //     <div className="max-w-5xl mx-auto mt-20">
-    //       <h1
-    //         className={`${gruppo.className} text-gray-900 text-3xl md:text-4xl lg:text-6xl xl:text-6xl text-center mx-auto`}
-    //       >
-    //         Explore local <span className="text-[#f4b8ae]">beauty</span> and
-    //         wellness services tailored for you
-    //       </h1>
-    //       <div className="mt-10 px-5 lg:px-0">
-    //         {/* <BookingForm /> */}
-    //         <h1>BOOKFORM</h1>
-    //       </div>
+    <BackgroundGradientAnimation>
+      <div className="z-50 mb-20 relative">
+        <Navbar />
+      </div>
+      <div className="absolute z-40 inset-0 flex items-center">
+        <div className="max-w-5xl mx-auto mt-20">
+          <h1
+            className={`${gruppo.className} text-gray-900 text-3xl md:text-4xl lg:text-6xl xl:text-6xl text-center mx-auto`}
+          >
+            Explore local <span className="text-[#f4b8ae]">beauty</span> and
+            wellness services tailored for you
+          </h1>
+          <div className="mt-10 px-5 lg:px-0">
+            {/* <BookingForm /> */}
+            <h1>BOOKFORM</h1>
+          </div>
 
-    //       <LiveCounter />
-    //     </div>
-    //   </div>
-    // </BackgroundGradientAnimation>
-    <>HERO</>
+          <LiveCounter />
+        </div>
+      </div>
+    </BackgroundGradientAnimation>
   );
 };
 
