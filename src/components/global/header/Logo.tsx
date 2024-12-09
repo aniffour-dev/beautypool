@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import LogO from "../../../../../public/assets/logo.webp";
+import LogO from "../../../../public/assets/logo.webp";
 import { Gruppo } from "next/font/google";
 
 const gruppo = Gruppo({ weight: "400", subsets: ["latin"] });
