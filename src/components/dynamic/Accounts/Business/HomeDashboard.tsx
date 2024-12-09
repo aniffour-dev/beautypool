@@ -209,7 +209,6 @@ import BookDashboard from "./BookDashboard";
 import PaymentsDashboard from "./PaymentsDashboard";
 import Sidenav from "./Sidenav";
 import Header from "./Header/Header";
-import { Gruppo } from "next/font/google";
 
 // Define a type for user data
 interface UserData {
@@ -233,14 +232,8 @@ ChartJS.register(
   Legend
 );
 
-const gruppo = Gruppo({
-  subsets: ['latin'],
-  variable: "--font-geist-mono",
-  weight: "400",
-});
-
 const HomeDashboard = () => {
-  const [activePage, setActivePage] = useState("home");
+  const [activePage, ] = useState("home");
   const [searchTerm, setSearchTerm] = useState("");
   const [userData, setUserData] = useState<UserData | null>(null);
 

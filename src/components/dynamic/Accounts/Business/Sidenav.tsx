@@ -51,7 +51,7 @@ const sidenavItems = [
 
 const Sidenav = () => {
   const [activeItem, setActiveItem] = useState("Profile");
-  const [userData, setUserData] = useState<any>(null);
+  const [, setUserData] = useState<any>(null);
   const router = useRouter();
 
   useEffect(() => {
