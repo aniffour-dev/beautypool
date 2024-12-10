@@ -20,6 +20,14 @@ interface Category {
   icon: string;
 }
 
+interface MapboxFeature {
+  place_name: string;
+  center: [number, number];
+  context: {
+    text: string;
+  }[];
+}
+
 const reverseGeocode = async (latitude: number, longitude: number): Promise<string> => {
   const accessToken =
     "pk.eyJ1IjoiYW5pZmZvdXJkZXYiLCJhIjoiY2xvc28zMXJjMDM4dTJycXc0aHBkN2pmcyJ9.IEOWZZQT6rlwKckMaoTh8g"; // Replace with your Mapbox API key
@@ -83,7 +91,7 @@ export default function BookingHead() {
 
       // Check if data is available
       if (data.features) {
-        return data.features.map((feature: any) => ({
+        return data.features.map((feature: MapboxFeature) => ({
           name: feature.place_name,
           latitude: feature.center[1],
           longitude: feature.center[0],
