@@ -6,7 +6,7 @@ import Link from "next/link";
 import { IoStar } from "react-icons/io5";
 
 interface Article {
-  featured_image: string; // Changed from any to string
+  featured_image: string;
   id: string;
   label: string;
   slug: string;

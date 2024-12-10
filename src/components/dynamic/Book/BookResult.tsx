@@ -9,21 +9,6 @@ import MapComponent from "./Map";
 import api from "@/services/auth";
 import Cookies from "js-cookie";
 
-interface Article {
-  id: string;
-  label: string;
-  address: string;
-  latitude: number;
-  longitude: number;
-  image: string;
-  rating: number;
-  reviews: number;
-  distance: string;
-  services: { name: string; price: number }[];
-  slug: string;
-  featured_image: string;
-}
-
 const geocodeAddress = async (address: string): Promise<{ latitude: number; longitude: number } | null> => {
   const accessToken = "pk.eyJ1IjoiYW5pZmZvdXJkZXYiLCJhIjoiY2xvc28zMXJjMDM4dTJycXc0aHBkN2pmcyJ9.IEOWZZQT6rlwKckMaoTh8g"; // Replace with your Mapbox API key
   try {
@@ -66,13 +51,6 @@ const determineSearchScope = (location: string): string => {
 
 const BookingResult = () => {
   const searchParams = useSearchParams();
-
-  // Ensure searchParams is not null
-  if (!searchParams) {
-    console.error("searchParams is null");
-    return null; // or handle the null case appropriately
-  }
-
   const location = searchParams.get("location");
   const latitude = searchParams.get("latitude");
   const longitude = searchParams.get("longitude");
@@ -81,7 +59,8 @@ const BookingResult = () => {
   const parsedLatitude = latitude ? parseFloat(latitude) : 0;
   const parsedLongitude = longitude ? parseFloat(longitude) : 0;
 
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getArticles = async () => {
@@ -108,32 +87,40 @@ const BookingResult = () => {
           const searchScope = determineSearchScope(location!);
 
           // Filter articles based on the search scope
-          const filteredArticles = articlesData.filter((article: Article) => {
+          const filteredArticles = articlesData.filter((article: any) => {
             if (searchScope === "exact") {
-              return article.address.toLowerCase() === location!.toLowerCase();
+              return article.Address.toLowerCase() === location!.toLowerCase();
             } else {
-              return article.address.toLowerCase().includes(location!.toLowerCase());
+              return article.Address.toLowerCase().includes(location!.toLowerCase());
             }
           });
 
           // Geocode addresses for the filtered articles
           const articlesWithCoordinates = await Promise.all(
-            filteredArticles.map(async (article: Article) => {
-              const coordinates = await geocodeAddress(article.address);
+            filteredArticles.map(async (article: any) => {
+              const coordinates = await geocodeAddress(article.Address);
               return { ...article, ...coordinates };
             })
           );
 
           setArticles(articlesWithCoordinates);
+          setLoading(false);
         } catch (error) {
           console.error("Error fetching articles:", error);
+          setLoading(false);
         }
       } else {
         console.error("Missing required parameters: savedCategoryId or accessToken");
+        setLoading(false);
       }
     };
     getArticles();
   }, [location]);
+
+  if (!searchParams) {
+    console.error("searchParams is null");
+    return null; // or handle the null case appropriately
+  }
 
   return (
     <div className="lg:flex h-screen">
@@ -150,10 +137,7 @@ const BookingResult = () => {
             Filter
           </button>
         </div>
-        <ArticlesLists
-          venues={articles}
-          location={{ latitude: parsedLatitude, longitude: parsedLongitude, address: location }}
-        />
+        <ArticlesLists venues={articles} location={{ latitude: parsedLatitude, longitude: parsedLongitude, address: location }} />
       </div>
       <div className="lg:w-8/12 h-screen">
         <MapComponent

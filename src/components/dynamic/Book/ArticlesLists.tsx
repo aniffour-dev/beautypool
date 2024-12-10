@@ -15,6 +15,8 @@ interface Article {
   reviews: number;
   distance: string;
   services: { name: string; price: number }[];
+  slug: string;
+  featured_image: string;
 }
 
 interface ArticlesListsProps {
@@ -23,7 +25,6 @@ interface ArticlesListsProps {
 }
 
 const ArticlesLists: React.FC<ArticlesListsProps> = ({ venues, location }) => {
-  const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,7 +48,6 @@ const ArticlesLists: React.FC<ArticlesListsProps> = ({ venues, location }) => {
               Authorization: `Bearer ${accessToken}`,
             },
           });
-          setArticles(response.data.data); // Storing data as an array
           console.log(response.data.data);
           setLoading(false);
         } catch (error) {
@@ -70,10 +70,10 @@ const ArticlesLists: React.FC<ArticlesListsProps> = ({ venues, location }) => {
             <>loading...</>
           </div>
         </div>
-      ) : articles?.length === 0 ? (
+      ) : venues?.length === 0 ? (
         <>No Treatment Found!</>
       ) : (
-        articles.map((article) => (
+        venues.map((article) => (
           <Link
             key={article.id}
             href={`/a/${article.slug}`}
@@ -98,7 +98,7 @@ const ArticlesLists: React.FC<ArticlesListsProps> = ({ venues, location }) => {
                   </div>
                   <span className="text-gray-600 ml-2">(8)</span>
                 </div>
-                <p className="text-gray-600 mt-2 text-sm">{article.Address}</p>
+                <p className="text-gray-600 mt-2 text-sm">{article.address}</p>
               </div>
             </div>
           </Link>
