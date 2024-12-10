@@ -1679,13 +1679,14 @@ const singleBook = () => {
       {booking && (
         <div className="bg-white fixed left-0 top-0 w-full h-full z-50 p-10 overflow-auto">
           <div>
-            {/* <BookingSteps
-              article={article}
-              onClose={() => setBooking(false)}
-              services={services}
-              userData={userData?.userData}
-            /> */}
-            <>asratsry</>
+            {userData && (
+              <BookingSteps
+                article={article}
+                onClose={() => setBooking(false)}
+                services={services}
+                userData={userData}
+              />
+            )}
           </div>
         </div>
       )}
