@@ -7,8 +7,15 @@ import axios from "axios";
 import BookingHeader from "../Header/Header";
 import Sidenav from "../Sidenav";
 
+interface UserData {
+  name: string;
+  dob: string;
+  email: string;
+  phone: string;
+}
+
 const Settings = () => {
-  const [, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
