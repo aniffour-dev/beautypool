@@ -60,7 +60,7 @@ const BookingResult = () => {
   const parsedLongitude = longitude ? parseFloat(longitude) : 0;
 
   const [articles, setArticles] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   useEffect(() => {
     const getArticles = async () => {
