@@ -117,19 +117,19 @@ const RightBar = () => {
           )}
         </div>
       ) : (
-        <div className="flex flex-wrap gap-1 justify-center items-center">
+        <div className="flex flex-wrap gap-1.5 justify-center items-center pr-5 lg:pr-0">
           {/* Sign Up Button */}
           <Link href="/signup">
-            <button className="py-1 px-2 text-xs sm:text-sm md:text-base lg:text-lg rounded-lg bg-gray-900 border-[1px] border-black text-white font-semibold hover:bg-black/80 transition-all">
+            <button className="py-1.5 px-4 text-md rounded-full bg-gray-900 border-[1px] border-black text-white font-semibold hover:bg-black/80 transition-all">
               Sign Up{" "}
-              <HiMiniUserPlus className="inline-block size-3 sm:size-4 md:size-5 lg:size-6 relative -top-[1px] ml-1" />
+              <HiMiniUserPlus className="inline-block size-4.5 relative -top-[1px] ml-1" />
             </button>
           </Link>
           {/* Sign In Button */}
           <Link href="/login">
-            <button className="py-1 px-2 text-xs sm:text-sm md:text-base lg:text-lg rounded-lg bg-white border-[1px] border-gray-800 border-opacity-30 text-gray-900 font-semibold hover:bg-slate-100 transition-all">
+            <button className="py-1.5 px-4 text-md rounded-full bg-white border-[1px] border-gray-800 border-opacity-30 text-gray-900 font-semibold hover:bg-slate-100 transition-all">
               Sign In{" "}
-              <IoLogInSharp className="inline-block size-3 sm:size-4 md:size-5 lg:size-6 relative -top-[1px] ml-1" />
+              <IoLogInSharp className="inline-block size-5 relative -top-[1px] ml-1" />
             </button>
           </Link>
         </div>

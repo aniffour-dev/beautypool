@@ -49,7 +49,7 @@ export default function Trending() {
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <h2
-          className={`${gruppo.className} text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-3`}
+          className={`${gruppo.className} text-3xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3`}
         >
           Trending
         </h2>

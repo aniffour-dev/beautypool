@@ -513,8 +513,34 @@ export default function BookingForm() {
               )}
             </div>
           </div>
+          <div className="w-full md:w-6/12 lg:w-4/12 mb-2 hidden lg:block">
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={
+              loading ||
+              !venueAndTreatment ||
+              !location ||
+              !date ||
+              !selectedTime ||
+              !selectedCategoryId
+            }
+            className={`w-full border rounded-full px-4 py-2 text-white font-medium ${
+              loading ||
+              !venueAndTreatment ||
+              !location ||
+              !date ||
+              !selectedTime ||
+              !selectedCategoryId
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-black hover:bg-zinc-800"
+            }`}
+          >
+            {loading ? "Searching..." : "Search"}
+          </button>
         </div>
-        <div className="flex lg:w-4/12">
+        </div>
+        <div className="w-12/12 md:w-full lg:w-4/12 mb-2 block lg:hidden">
           {/* Submit Button */}
           <button
             type="submit"

@@ -10,7 +10,7 @@ const Logo = () => {
   return (
     <div>
       <Link href="/" className="flex justify-center items-center">
-        <Image src={LogO} alt="logo" width={70} height={0} className="-mr-4" />
+        <Image src={LogO} alt="logo" width={0} height={0} className="-mr-4 w-24 md:w-20" />
         <span
           className={`${gruppo.className} text-4xl hidden md:block text-[#cb887c] font-bold`}
         >

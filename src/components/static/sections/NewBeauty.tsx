@@ -50,7 +50,7 @@ export default function NewBeauty() {
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <h2
-          className={`${gruppo.className} text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-3`}
+          className={`${gruppo.className} text-3xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3`}
         >
           New to BeautyPool
         </h2>
@@ -94,7 +94,7 @@ export default function NewBeauty() {
                     />
                     <div className="p-4">
                       {/* Salon Name */}
-                      <h3 className={`${gruppo.className} text-md sm:text-md lg:text-lg font-semibold text-gray-800 truncate`}>
+                      <h3 className={`text-md sm:text-md lg:text-lg font-semibold text-gray-800 truncate`}>
                         {article.label}
                       </h3>
 
