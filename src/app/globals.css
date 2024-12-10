@@ -8,7 +8,7 @@ body {
 .gredient-bg {
   background: linear-gradient(-45deg, #fe9f8e, #f47c66, #f48673, #fc907d);
   background-size: 400% 400%;
-  animation: gradient 6s ease infinite;
+  animation: gradient 5s ease infinite;
 }
 
 @keyframes gradient {
@@ -127,7 +127,7 @@ body {
   color: #4b5563 !important; /* text-gray-700 */
   line-height: 1.25 !important; /* leading-tight */
   outline: none !important; /* focus:outline-none */
-  transition: box-shadow 0.2s ease-in-out !important;
+  transition: box-shadow 0.5s ease-in-out !important;
 }
 
 .react-tel-input .form-control:focus {
