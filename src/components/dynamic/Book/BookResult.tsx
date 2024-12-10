@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ArticlesLists from "./ArticlesLists";
 import { IoFilterOutline } from "react-icons/io5";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
@@ -8,6 +8,21 @@ import Link from "next/link";
 import MapComponent from "./Map";
 import api from "@/services/auth";
 import Cookies from "js-cookie";
+
+interface Article {
+  id: string;
+  label: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  image: string;
+  rating: number;
+  reviews: number;
+  distance: string;
+  services: { name: string; price: number }[];
+  slug: string;
+  featured_image: string;
+}
 
 const geocodeAddress = async (address: string): Promise<{ latitude: number; longitude: number } | null> => {
   const accessToken = "pk.eyJ1IjoiYW5pZmZvdXJkZXYiLCJhIjoiY2xvc28zMXJjMDM4dTJycXc0aHBkN2pmcyJ9.IEOWZZQT6rlwKckMaoTh8g"; // Replace with your Mapbox API key
@@ -66,8 +81,7 @@ const BookingResult = () => {
   const parsedLatitude = latitude ? parseFloat(latitude) : 0;
   const parsedLongitude = longitude ? parseFloat(longitude) : 0;
 
-  const [articles, setArticles] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     const getArticles = async () => {
@@ -94,31 +108,28 @@ const BookingResult = () => {
           const searchScope = determineSearchScope(location!);
 
           // Filter articles based on the search scope
-          const filteredArticles = articlesData.filter((article: any) => {
+          const filteredArticles = articlesData.filter((article: Article) => {
             if (searchScope === "exact") {
-              return article.Address.toLowerCase() === location!.toLowerCase();
+              return article.address.toLowerCase() === location!.toLowerCase();
             } else {
-              return article.Address.toLowerCase().includes(location!.toLowerCase());
+              return article.address.toLowerCase().includes(location!.toLowerCase());
             }
           });
 
           // Geocode addresses for the filtered articles
           const articlesWithCoordinates = await Promise.all(
-            filteredArticles.map(async (article: any) => {
-              const coordinates = await geocodeAddress(article.Address);
+            filteredArticles.map(async (article: Article) => {
+              const coordinates = await geocodeAddress(article.address);
               return { ...article, ...coordinates };
             })
           );
 
           setArticles(articlesWithCoordinates);
-          setLoading(false);
         } catch (error) {
           console.error("Error fetching articles:", error);
-          setLoading(false);
         }
       } else {
         console.error("Missing required parameters: savedCategoryId or accessToken");
-        setLoading(false);
       }
     };
     getArticles();
@@ -139,7 +150,10 @@ const BookingResult = () => {
             Filter
           </button>
         </div>
-        <ArticlesLists venues={articles} location={{ latitude: parsedLatitude, longitude: parsedLongitude, address: location }} />
+        <ArticlesLists
+          venues={articles}
+          location={{ latitude: parsedLatitude, longitude: parsedLongitude, address: location }}
+        />
       </div>
       <div className="lg:w-8/12 h-screen">
         <MapComponent
