@@ -9,13 +9,6 @@ import { CiClock1, CiLocationOn } from "react-icons/ci";
 import { FaArrowDown } from "react-icons/fa";
 import Link from "next/link";
 import BookingSteps from "@/components/dynamic/Book/Steps/BookingSteps";
-import {
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-  TabPanel,
-} from "@material-tailwind/react";
 import BookingHeader from "@/components/global/booking-header/BookingHeader";
 
 // Define interfaces for Article, Review, User, and Service
@@ -72,23 +65,10 @@ const SingleBook: React.FC<SingleBookProps> = ({ slug }) => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-//   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, ] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [booking, setBooking] = useState(false);
-  const [userData, setUserData] = useState<UserData | null>(null); // Add userData state
-
-//   const handleNext = () => {
-//     if (carouselRef.current && currentIndex < services.length - 1) {
-//       setCurrentIndex(currentIndex + 1);
-//     }
-//   };
-
-//   const handlePrev = () => {
-//     if (carouselRef.current && currentIndex > 0) {
-//       setCurrentIndex(currentIndex - 1);
-//     }
-//   };
+  const [userData, ] = useState<UserData | null>(null); // Add userData state
 
   const handleBooking = () => {
     setBooking(true);
@@ -141,7 +121,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ slug }) => {
             );
             const parentServices: { [key: string]: ParentService } = {};
 
-            servicesResponse.data.data.sub_service.forEach((service: any) => {
+            servicesResponse.data.data.sub_service.forEach((service: { sub_services_id: { name: string; description: string; price: string; duration: string; parent_service: { name: string; description: string } } }) => {
               const parentServiceName =
                 service.sub_services_id.parent_service.name;
               if (!parentServices[parentServiceName]) {
