@@ -87,7 +87,7 @@ export default function Trending() {
                 <Link href={`/a/${article.slug}`} key={article.id}>
                   <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                     <img
-                      src={`http://109.199.103.20:2022/assets/${article.featured_image}`}
+                      src={`https://maoulaty.shop/assets/${article.featured_image}`}
                       alt={article.label}
                       className="w-full h-40 object-cover"
                     />

@@ -301,7 +301,7 @@ const Services: React.FC = () => {
             className="cursor-pointer flex justify-center items-center flex-col space-y-2"
           >
             <img
-              src={`http://109.199.103.20:2022/assets/${icon}`}
+              src={`https://maoulaty.shop/assets/${icon}`}
               alt={label}
               className="w-9 h-9"
             />

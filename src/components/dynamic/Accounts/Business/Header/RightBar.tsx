@@ -62,7 +62,7 @@ const RightBar = () => {
               <>
                 {userData.avatar ? (
                   <Image
-                    src={`http://109.199.103.20:2022/assets/${userData.avatar}`}
+                    src={`https://maoulaty.shop/assets/${userData.avatar}`}
                     alt={userData.first_name || ""}
                     width={30}
                     height={30}

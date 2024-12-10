@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const API_URL = "http://109.199.103.20:2022"; // Your Directus instance URL
+const API_URL = "https://maoulaty.shop"; // Your Directus instance URL
 
 // Token management with cookies
 const getAccessToken = () => Cookies.get("access_token");

@@ -125,7 +125,7 @@ const RegisterBusiness = () => {
       const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
       setGeneratedOtp(otpCode);
 
-      await axios.post("http://109.199.103.20:2022/otp-verification", {
+      await axios.post("https://maoulaty.shop/otp-verification", {
         email: email,
         code: otpCode,
       });
