@@ -191,6 +191,9 @@ const Settings = () => {
               {loading ? "Updating..." : "Update Contact Details"}
             </button>
           </div>
+          {userData && (
+            <></>
+          )}
         </div>
 
         {/* Account Deletion Section */}
