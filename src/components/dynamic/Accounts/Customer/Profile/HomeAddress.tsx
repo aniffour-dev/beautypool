@@ -7,11 +7,16 @@ interface HomeAddressProps {
   onClose: () => void;
 }
 
+interface Suggestion {
+  id: string;
+  place_name: string;
+}
+
 const HomeAddress: React.FC<HomeAddressProps> = ({ onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [inputValue, setInputValue] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
-  const [selectedAddress, setSelectedAddress] = useState<any>(null);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [selectedAddress, setSelectedAddress] = useState<Suggestion | null>(null);
 
   const MAPBOX_TOKEN =
     "pk.eyJ1IjoiYW5pZmZvdXJkZXYiLCJhIjoiY2xvc28zMXJjMDM4dTJycXc0aHBkN2pmcyJ9.IEOWZZQT6rlwKckMaoTh8g"; // Replace with your Mapbox access token
@@ -45,7 +50,7 @@ const HomeAddress: React.FC<HomeAddressProps> = ({ onClose }) => {
     setInputValue(e.target.value);
   };
 
-  const handleSelectAddress = (address: any) => {
+  const handleSelectAddress = (address: Suggestion) => {
     setSelectedAddress(address);
     setInputValue(address.place_name);
     setSuggestions([]);

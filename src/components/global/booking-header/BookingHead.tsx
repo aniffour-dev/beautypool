@@ -63,8 +63,6 @@ export default function BookingHead() {
   const [selectedTime, setSelectedTime] = useState("anytime");
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
-  const [fromTime, setFromTime] = useState("");
-  const [toTime, setToTime] = useState("");
   const [results, setResults] = useState<Location[]>([]);
 
   const fetchLocations = async (query: string): Promise<Location[]> => {
@@ -115,26 +113,6 @@ export default function BookingHead() {
 
   const handleTimeSelection = (timeSlot: string) => {
     setSelectedTime(timeSlot);
-
-    // Set the actual time value based on the selection
-    switch (timeSlot) {
-      case "Morning":
-        setFromTime("06:00");
-        setToTime("12:00");
-        break;
-      case "Afternoon":
-        setFromTime("12:00");
-        setToTime("17:00");
-        break;
-      case "Evening":
-        setFromTime("17:00");
-        setToTime("00:00");
-        break;
-      case "Anytime":
-        setFromTime("");
-        setToTime("");
-        break;
-    }
   };
 
   useEffect(() => {

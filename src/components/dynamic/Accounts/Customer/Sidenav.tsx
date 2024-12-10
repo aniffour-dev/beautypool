@@ -3,11 +3,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
-import Cookies from "js-cookie";
-import api from "@/services/auth";
 import { IoCalendarOutline } from "react-icons/io5";
-import { LuSettings } from "react-icons/lu";
 import { TiHeartOutline } from "react-icons/ti";
+import { LuSettings } from "react-icons/lu";
+import api from "@/services/auth";
+
+interface UserData {
+  first_name: string;
+  last_name: string;
+}
 
 const sidenavItems = [
   { name: "Profile", icon: <FiUser className="size-5" />, link: "/profile" },
@@ -30,7 +34,7 @@ const sidenavItems = [
 
 const Sidenav = () => {
   const [activeItem, setActiveItem] = useState("Profile");
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const router = useRouter();
 
   useEffect(() => {

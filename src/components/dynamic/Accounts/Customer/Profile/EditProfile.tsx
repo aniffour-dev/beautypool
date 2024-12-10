@@ -1,12 +1,17 @@
-// EditModal.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 // import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import api from "@/services/auth"; // Ensure you have the correct path to your API service
 
+interface UserData {
+  first_name: string;
+  last_name: string;
+  email: string;
+}
+
 interface EditModalProps {
-  userData: any;
+  userData: UserData;
   onClose: () => void;
 }
 
@@ -45,7 +50,6 @@ const EditModal: React.FC<EditModalProps> = ({ userData, onClose }) => {
       console.error("Error updating user data:", error);
     }
   };
-  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">

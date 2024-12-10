@@ -15,16 +15,29 @@ import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 
+interface UserData {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  birthday?: string;
+  dialcode: number;
+  gender?: string;
+  avatar?: string;
+  home_address?: string;
+  work_address?: string;
+}
+
 const CustomerProfile = () => {
-  const [profileImage, setProfileImage] = React.useState<
-    string | ArrayBuffer | null
-  >(null);
+  const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>(
+    null
+  );
   const router = useRouter();
-  const [userData, setUserData] = useState<any>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [homeaddressmodal, setHomeAddressmodal] = useState(false);
-  const [workaddressesModal, setWorkAddressmodal] = useState(false);
+  const [homeAddressModal, setHomeAddressModal] = useState(false);
+  const [workAddressModal, setWorkAddressModal] = useState(false);
 
   useEffect(() => {
     const getMe = async () => {
@@ -38,12 +51,6 @@ const CustomerProfile = () => {
     };
     getMe();
   }, [router]);
-
-  // useEffect(() => {
-  //   const accessToken = Cookies.get("access_token");
-  //   console.log("Access Token:", accessToken);
-  //   setIsAuthenticated(!!accessToken);
-  // }, []);
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -78,13 +85,16 @@ const CustomerProfile = () => {
         const imageId = response.data.data.id;
 
         // Update the user's avatar with the new image ID
-        await api.patch(`/users/${userData.id}`, { avatar: imageId });
+        await api.patch(`/users/${userData?.id}`, { avatar: imageId });
 
         // Update the user data state with the new avatar
-        setUserData((prevData: any) => ({
-          ...prevData,
-          avatar: imageId,
-        }));
+        setUserData(
+          (prevData) =>
+            ({
+              ...prevData,
+              avatar: imageId,
+            } as UserData)
+        );
 
         // Show success message
         Swal.fire({
@@ -104,14 +114,17 @@ const CustomerProfile = () => {
   };
 
   const openHomeAddressModal = () => {
-    setHomeAddressmodal(true);
+    setHomeAddressModal(true);
   };
+
   const openWorkAddressModal = () => {
-    setWorkAddressmodal(true);
+    setWorkAddressModal(true);
   };
 
   const closeModal = () => {
     setShowModal(false);
+    setHomeAddressModal(false);
+    setWorkAddressModal(false);
   };
 
   return (
@@ -194,7 +207,7 @@ const CustomerProfile = () => {
                     <div className="mb-2">
                       <span className="font-semibold">Mobile number</span>
                       <p className="text-gray-500">
-                        {userData.dial} {userData.phone}
+                        {userData.dialcode} {userData.phone}
                       </p>
                     </div>
                     <div className="mb-2">
@@ -253,9 +266,11 @@ const CustomerProfile = () => {
           </>
         ) : null}
       </div>
-      {showModal && <EditModal userData={userData} onClose={closeModal} />}
-      {homeaddressmodal && <HomeAddress onClose={closeModal} />}
-      {workaddressesModal && <WorkAddress onClose={closeModal} />}
+      {showModal && userData && (
+        <EditModal userData={userData} onClose={closeModal} />
+      )}
+      {homeAddressModal && <HomeAddress onClose={closeModal} />}
+      {workAddressModal && <WorkAddress onClose={closeModal} />}
     </>
   );
 };

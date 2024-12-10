@@ -7,11 +7,16 @@ interface WorkAddressProps {
   onClose: () => void;
 }
 
+interface Suggestion {
+  id: string;
+  place_name: string;
+}
+
 const WorkAddress: React.FC<WorkAddressProps> = ({ onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [inputValue, setInputValue] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
-  const [selectedAddress, setSelectedAddress] = useState<any>(null);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [selectedAddress, setSelectedAddress] = useState<Suggestion | null>(null);
 
   const MAPBOX_TOKEN =
     "pk.eyJ1IjoiYW5pZmZvdXJkZXYiLCJhIjoiY2xvc28zMXJjMDM4dTJycXc0aHBkN2pmcyJ9.IEOWZZQT6rlwKckMaoTh8g"; // Replace with your Mapbox access token
@@ -45,7 +50,7 @@ const WorkAddress: React.FC<WorkAddressProps> = ({ onClose }) => {
     setInputValue(e.target.value);
   };
 
-  const handleSelectAddress = (address: any) => {
+  const handleSelectAddress = (address: Suggestion) => {
     setSelectedAddress(address);
     setInputValue(address.place_name);
     setSuggestions([]);
@@ -55,12 +60,12 @@ const WorkAddress: React.FC<WorkAddressProps> = ({ onClose }) => {
     if (selectedAddress) {
       try {
         const response = await api.patch("/users/me", {
-            work_address: selectedAddress.place_name,
+          work_address: selectedAddress.place_name,
         });
-        console.log("Home address updated successfully:", response.data.data);
+        console.log("Work address updated successfully:", response.data.data);
         onClose(); // Close the modal after successful update
       } catch (error) {
-        console.error("Error updating home address:", error);
+        console.error("Error updating work address:", error);
       }
     }
   };
