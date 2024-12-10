@@ -107,7 +107,7 @@ const Drawer = () => {
           // If not logged in, show Sign In and Sign Up buttons
           <>
             <Link
-              href="/signin"
+              href="/login"
               className="px-4 py-1.5 hover:bg-gray-100 text-sm font-semibold flex justify-start items-center gap-1"
             >
               <span>Sign In</span>
