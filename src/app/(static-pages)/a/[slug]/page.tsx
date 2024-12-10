@@ -1,8 +1,11 @@
+"use client";
+import { useParams } from "next/navigation";
 import SingleBook from "@/components/dynamic/Book/SingleBook";
-import React from "react";
 
-const singlebookPage = () => {
-  return <SingleBook />;
+const Page = () => {
+  const { slug } = useParams<{ slug: string }>();
+
+  return <SingleBook slug={slug} />;
 };
 
-export default singlebookPage;
+export default Page;

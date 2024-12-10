@@ -1,8 +1,6 @@
 "use client";
-import BookingHeader from "@/components/global/booking-header/BookingHeader";
 import React, { useState, useRef, useEffect } from "react";
 import api from "@/services/auth";
-import { useParams } from "next/navigation";
 import Cookies from "js-cookie";
 import { IoStar } from "react-icons/io5";
 import { GoHeart } from "react-icons/go";
@@ -11,13 +9,14 @@ import { CiClock1, CiLocationOn } from "react-icons/ci";
 import { FaArrowDown } from "react-icons/fa";
 import Link from "next/link";
 import BookingSteps from "@/components/dynamic/Book/Steps/BookingSteps";
-// import {
-//   Tabs,
-//   TabsHeader,
-//   TabsBody,
-//   Tab,
-//   TabPanel,
-// } from "@material-tailwind/react";
+import {
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  Tab,
+  TabPanel,
+} from "@material-tailwind/react";
+import BookingHeader from "@/components/global/booking-header/BookingHeader";
 
 // Define interfaces for Article, Review, User, and Service
 interface UserData {
@@ -64,17 +63,32 @@ interface Service {
   parent_service: ParentService;
 }
 
-const SingleBook: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
+interface SingleBookProps {
+  slug: string;
+}
+
+const SingleBook: React.FC<SingleBookProps> = ({ slug }) => {
   const [article, setArticle] = useState<Article | null>(null);
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 //   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [currentIndex, ] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [booking, setBooking] = useState(false);
-  const [userData, ] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null); // Add userData state
+
+//   const handleNext = () => {
+//     if (carouselRef.current && currentIndex < services.length - 1) {
+//       setCurrentIndex(currentIndex + 1);
+//     }
+//   };
+
+//   const handlePrev = () => {
+//     if (carouselRef.current && currentIndex > 0) {
+//       setCurrentIndex(currentIndex - 1);
+//     }
+//   };
 
   const handleBooking = () => {
     setBooking(true);
