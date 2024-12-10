@@ -313,7 +313,7 @@ export default function BookingHead() {
                           <div
                             className="w-7 h-7 bg-cover bg-center"
                             style={{
-                              backgroundImage: `url(http://109.199.103.20:2022/assets/${category.icon})`,
+                              backgroundImage: `url(https://maoulaty.shop/assets/${category.icon})`,
                             }}
                           ></div>
                           <span>{category.label}</span>

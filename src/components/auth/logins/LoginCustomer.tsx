@@ -46,7 +46,7 @@ const LoginCustomer = () => {
       setAccessToken(access_token);
       setRefreshToken(refresh_token);
 
-      router.push("/profile");
+      router.push("/");
     } catch (loginError) {
       setError("Login failed. Please check your credentials.");
       console.error("Login error:", loginError);

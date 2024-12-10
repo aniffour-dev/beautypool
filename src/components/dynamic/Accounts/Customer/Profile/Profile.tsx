@@ -73,7 +73,7 @@ const CustomerProfile = () => {
 
       try {
         const response = await axios.post(
-          "http://109.199.103.20:2022/files",
+          "https://maoulaty.shop/files",
           formData,
           {
             headers: {
@@ -139,7 +139,7 @@ const CustomerProfile = () => {
           <>
             <h1 className="text-3xl font-bold mb-8">Profile</h1>
             <div className="lg:flex gap-10 mb-10">
-              <div className="lg:w-4/12">
+              <div className="lg:w-4/12 mb-3">
                 <div className="p-5 border-[1px] bg-white border-slate-200 shadow-sm rounded-xl">
                   <div className="flex justify-end">
                     <button
@@ -156,7 +156,7 @@ const CustomerProfile = () => {
                         style={
                           userData.avatar
                             ? {
-                                backgroundImage: `url(http://109.199.103.20:2022/assets/${userData.avatar})`,
+                                backgroundImage: `url(https://maoulaty.shop/assets/${userData.avatar})`,
                               }
                             : {}
                         }
