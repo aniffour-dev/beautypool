@@ -9,10 +9,14 @@ interface PaymentFormProps {
   calculateTotal: () => number;
 }
 
+interface PaymentIntent {
+  client_secret: string;
+}
+
 const PaymentForm: React.FC<PaymentFormProps> = ({ calculateTotal }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [paymentIntent, setPaymentIntent] = useState<any>(null);
+  const [paymentIntent, setPaymentIntent] = useState<PaymentIntent | null>(null);
   const [cardHolderName, setCardHolderName] = useState("");
 
   useEffect(() => {
@@ -49,7 +53,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ calculateTotal }) => {
       console.error(error);
     } else {
       const { error: confirmationError } = await stripe.confirmCardPayment(
-        paymentIntent.client_secret,
+        paymentIntent!.client_secret,
         {
           payment_method: paymentMethod!.id,
         }

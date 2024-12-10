@@ -55,9 +55,7 @@ const ArticlesLists: React.FC<ArticlesListsProps> = ({ venues, location }) => {
           setLoading(false);
         }
       } else {
-        console.error(
-          "Missing required parameters: savedCategoryId or accessToken"
-        );
+        console.error("Missing required parameters: savedCategoryId or accessToken");
         setLoading(false);
       }
     };

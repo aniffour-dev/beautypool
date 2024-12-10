@@ -9,11 +9,8 @@ import MapComponent from "./Map";
 import api from "@/services/auth";
 import Cookies from "js-cookie";
 
-const geocodeAddress = async (
-  address: string
-): Promise<{ latitude: number; longitude: number } | null> => {
-  const accessToken =
-    "pk.eyJ1IjoiYW5pZmZvdXJkZXYiLCJhIjoiY2xvc28zMXJjMDM4dTJycXc0aHBkN2pmcyJ9.IEOWZZQT6rlwKckMaoTh8g"; // Replace with your Mapbox API key
+const geocodeAddress = async (address: string): Promise<{ latitude: number; longitude: number } | null> => {
+  const accessToken = "pk.eyJ1IjoiYW5pZmZvdXJkZXYiLCJhIjoiY2xvc28zMXJjMDM4dTJycXc0aHBkN2pmcyJ9.IEOWZZQT6rlwKckMaoTh8g"; // Replace with your Mapbox API key
   try {
     const response = await fetch(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
@@ -101,9 +98,7 @@ const BookingResult = () => {
             if (searchScope === "exact") {
               return article.Address.toLowerCase() === location!.toLowerCase();
             } else {
-              return article.Address.toLowerCase().includes(
-                location!.toLowerCase()
-              );
+              return article.Address.toLowerCase().includes(location!.toLowerCase());
             }
           });
 
@@ -122,9 +117,7 @@ const BookingResult = () => {
           setLoading(false);
         }
       } else {
-        console.error(
-          "Missing required parameters: savedCategoryId or accessToken"
-        );
+        console.error("Missing required parameters: savedCategoryId or accessToken");
         setLoading(false);
       }
     };
@@ -146,14 +139,7 @@ const BookingResult = () => {
             Filter
           </button>
         </div>
-        <ArticlesLists
-          venues={articles}
-          location={{
-            latitude: parsedLatitude,
-            longitude: parsedLongitude,
-            address: location,
-          }}
-        />
+        <ArticlesLists venues={articles} location={{ latitude: parsedLatitude, longitude: parsedLongitude, address: location }} />
       </div>
       <div className="lg:w-8/12 h-screen">
         <MapComponent

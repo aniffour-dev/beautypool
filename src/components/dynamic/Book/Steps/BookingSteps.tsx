@@ -197,7 +197,7 @@ const BookingSteps: React.FC<BookingStepsProps> = ({
               <div className="border rounded-lg p-4">
                 <div className="flex items-center mb-4">
                   <img
-                    src={`http://109.199.103.20:2022/assets/${article.featured_image}`}
+                    src={`https://maoulaty.shop/assets/${article.featured_image}`}
                     alt={article.label}
                     className="w-12 h-12 rounded-full mr-4"
                   />
@@ -269,7 +269,7 @@ const BookingSteps: React.FC<BookingStepsProps> = ({
                 <div className="border rounded-lg p-4">
                   <div className="flex items-center mb-4">
                     <img
-                      src={`http://109.199.103.20:2022/assets/${article.featured_image}`}
+                      src={`https://maoulaty.shop/assets/${article.featured_image}`}
                       alt={article.label}
                       className="w-12 h-12 rounded-full mr-4"
                     />
@@ -426,7 +426,7 @@ const BookingSteps: React.FC<BookingStepsProps> = ({
               <div className="border rounded-lg p-4 sticky top-0">
                 <div className="flex items-center mb-4">
                   <img
-                    src={`http://109.199.103.20:2022/assets/${article.featured_image}`}
+                    src={`https://maoulaty.shop/assets/${article.featured_image}`}
                     alt={article.label}
                     className="w-12 h-12 rounded-full mr-4"
                   />

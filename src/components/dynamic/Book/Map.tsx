@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Link from "next/link";
-import { BsStar } from "react-icons/bs";
 import { IoStar } from "react-icons/io5";
 
 interface Article {
-  featured_image: any;
+  featured_image: string; // Changed from any to string
   id: string;
   label: string;
   slug: string;
@@ -58,11 +57,6 @@ const MapComponent: React.FC<MapProps> = ({
                 setSelected(article);
               }}
             >
-              {/* <img
-                src="https://www.fresha.com/assets/_next/static/images/illustration-map-pin-light-e073d663286aadd776e60d45e1c22938.svg"
-                alt="marker"
-                style={{ width: "30px", height: "30px" }}
-              /> */}
               <div className="h-11 w-11 bg-cover bg-center" style={{ backgroundImage: `url(https://maoulaty.shop/assets/12247141-da04-4eb2-bff5-205417bc924b?cache-buster=2024-12-07T13:14:36.000Z&key=system-large-contain)` }}>
                 <div className="flex justify-center text-center items-center flex-col bg-[#dd0067dc] h-5 w-5 rounded-full absolute left-[12px] top-[7px]">
                   <span className="text-xs font-bold text-white -mb-0.5">5.0</span>
@@ -113,11 +107,6 @@ const MapComponent: React.FC<MapProps> = ({
             latitude={currentLocation.latitude}
             anchor="bottom"
           >
-            {/* <img
-              src="https://www.fresha.com/assets/_next/static/images/illustration-map-pin-light-e073d663286aadd776e60d45e1c22938.svg"
-              alt="user-marker"
-              style={{ width: "30px", height: "30px" }}
-            /> */}
           </Marker>
 
           {/* User Entered Location Marker */}
@@ -127,11 +116,6 @@ const MapComponent: React.FC<MapProps> = ({
               latitude={currentLocation.latitude}
               anchor="bottom"
             >
-              {/* <img
-                src="https://maoulaty.shop/assets/12247141-da04-4eb2-bff5-205417bc924b?cache-buster=2024-12-07T13:14:36.000Z&key=system-large-contain"
-                alt="user-entered-marker"
-                style={{ width: "30px", height: "30px" }}
-              /> */}
             </Marker>
           )}
         </Map>
